@@ -1,0 +1,56 @@
+
+# 暴力求解
+# class Solution:
+# 	def maxSubArray(self, nums):
+# 		maxsum = nums[0]
+# 		n = []
+# 		for length in range(1, len(nums) + 1):
+# 			for start_ind in range(0, len(nums)-length+1):
+# 				newsum = 0
+# 				for l in range(length):
+# 					newsum += nums[start_ind+l]
+# 				if newsum >= maxsum:
+# 					maxsum = newsum
+# 		return maxsum
+
+
+# 分治法
+# class Solution:
+#     def maxSubArray(self, arr):
+#         return self.maximum_sub_array_sum_rec(arr, 0, len(arr) - 1)[4]
+
+#     def maximum_sub_array_sum_rec(self, arr, st, end):
+#         if st == end: # base case, handle single element
+#             return arr[st], st, arr[st], end, arr[st]
+#         mid = st + (end - st)//2
+#         left_sum1, left_index1, right_sum1, right_index1, max_sum1 = self.maximum_sub_array_sum_rec(arr, st, mid)
+#         left_sum2, left_index2, right_sum2, right_index2, max_sum2 = self.maximum_sub_array_sum_rec(arr, mid + 1, end)
+
+#         # re-calculate left_sum, left_index for the merged array
+#         cur_max_sum_left, cur_left_index = self.recalculate_sum_index(arr, left_index1+1, end+1, 1, left_sum1, left_index1)
+#         # re-calculate right_sum, right_index for the merged array
+#         cur_max_sum_right, cur_right_index = self.recalculate_sum_index(arr, right_index2-1, st-1, -1, right_sum2, right_index2)
+
+#         res_sum = max(right_sum1 + left_sum2, max_sum1, max_sum2) # calculate the resultant max sub array sum of merged array
+#         return cur_max_sum_left, cur_left_index, cur_max_sum_right, cur_right_index, res_sum
+
+#     def recalculate_sum_index(self, arr, start, end, step, sum, index):
+#         sum_temp, cur_max_sum, cur_index = sum, sum, index
+#         for i in range(start, end, step):
+#             sum_temp += arr[i]
+#             cur_max_sum, cur_index = (sum_temp, i) if sum_temp > cur_max_sum else (cur_max_sum, cur_index)
+#         return cur_max_sum, cur_index
+
+
+# 动态规划
+class Solution:
+	def maxSubArray(self, nums):
+		Maxsum = nums[0]
+		Ms = nums[0]
+		for i in range(len(nums)-1):
+			Ms = Ms + nums[i+1]
+			if Ms < nums[i+1]:
+				Ms = nums[i+1]
+			if Ms > Maxsum:
+				Maxsum = Ms
+		return Maxsum
