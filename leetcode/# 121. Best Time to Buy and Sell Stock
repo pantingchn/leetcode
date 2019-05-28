@@ -1,0 +1,46 @@
+# class Solution:
+#     def maxProfit(self, prices):
+#         if prices == []:
+#             return 0
+#         if len(prices) == 1:
+#             return 0
+#         difflist = []
+#         for i in range(len(prices)-1):
+#             difflist.append(prices[i+1] - prices[i])
+        
+#         maxprofit = difflist[0]
+#         sumprofit = 0
+#         for i in range(len(difflist)):
+#             sumprofit += difflist[i]
+#             if sumprofit < difflist[i]:
+#                 sumprofit = difflist[i]
+#             if sumprofit > maxprofit:
+#                 maxprofit = sumprofit
+        
+#         if maxprofit < 0:
+#             maxprofit = 0
+#         return maxprofit
+    
+
+class Solution:
+    def maxProfit(self, prices):
+        if prices == []:
+            return 0
+        if len(prices) == 1:
+            return 0
+        
+        maxprofit = prices[1] - prices[0]
+        sumprofit = 0
+        for i in range(len(prices)-1):
+            sumprofit += (prices[i+1] - prices[i])
+            if sumprofit < (prices[i+1] - prices[i]):
+                sumprofit = (prices[i+1] - prices[i])
+            if sumprofit > maxprofit:
+                maxprofit = sumprofit
+        
+        if maxprofit < 0:
+            maxprofit = 0
+        return maxprofit
+    
+    
+    # 本质上就是求最大子序列和的问题
