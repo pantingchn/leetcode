@@ -1,0 +1,8 @@
+class Solution:
+    def getRow(self, rowIndex):
+        l1 = [1]
+        n = 0
+        while n < rowIndex:
+            l1 = [sum(t) for t in zip([0]+l1, l1+[0])]
+            n = n+1
+        return l1
