@@ -1,0 +1,28 @@
+class Solution:
+    def removeDuplicates(self, nums):
+        ind = 0
+        if nums == []:
+            return ind
+        else:
+            for i in range(1, len(nums)):
+                if nums[i] != nums[ind]:
+                    ind += 1
+                    nums[ind] = nums[i]
+            return ind+1
+
+        
+
+        
+# 一直报错，因为创造了一个新的数组，但是不能这样做，和引用传值有关？
+class Solution:
+	def removeDuplicates(self, nums):
+		sort = []
+		sum = 0
+		for i in range(len(nums)):
+			if nums[i] in sort:
+				continue
+			else:
+				sort.append(nums[i])
+				sum += 1
+		return sum
+    
