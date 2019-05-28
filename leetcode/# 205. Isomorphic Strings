@@ -1,0 +1,16 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+#         container = {}
+#         for i in range(len(t)):
+#             if t[i] in container:
+#                 if container[t[i]] != s[i]:
+#                     return False
+#             elif s[i] in container.values():
+#                 return False
+#             else:
+#                 container[t[i]] = s[i] 
+#         return True
+        return list(map(s.find, s)) == list(map(t.find, t))
+    
+
+        
