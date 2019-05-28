@@ -1,0 +1,12 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        count = collections.Counter(s)
+        set_s = set(s)
+        res = 0
+        for ch in set_s:
+            res += count[ch] // 2 * 2
+            if count[ch] % 2 == 1 and res % 2 == 0:
+                res += 1
+        return res
+    
+    
