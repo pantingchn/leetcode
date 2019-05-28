@@ -1,0 +1,13 @@
+class Solution:
+    def fib(self, N):
+        F_0 = 0
+        F_1 = 1
+        if N == 0:
+            return F_0
+        if N == 1:
+            return F_1
+        for i in range(2, N+1):
+            F = F_1
+            F_1 = F_1 + F_0
+            F_0 = F
+        return F_1
