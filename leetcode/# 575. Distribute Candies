@@ -1,0 +1,9 @@
+class Solution:
+    def distributeCandies(self, candies: List[int]) -> int:
+        num = len(candies)
+        candies = set(candies)
+        if len(candies) >= num // 2:
+            return num // 2
+        else:
+            return len(candies)
+        
