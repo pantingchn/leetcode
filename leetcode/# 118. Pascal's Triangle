@@ -1,0 +1,14 @@
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        l1 = [1]
+        l2 =[]
+        n = 0
+        while n < numRows:
+            l2.append(l1)
+            l1 = [sum(t) for t in zip([0]+l1, l1+[0])]
+            n += 1       
+        return l2
+    
+    # 这里zip()和sum()的用法很是巧妙！！！
+    
+    
