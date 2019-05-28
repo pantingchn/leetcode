@@ -1,0 +1,21 @@
+# class Solution:
+#     def containsNearbyDuplicate(self, nums, k):
+#         map_a = dict()
+#         for i in range(len(nums)):
+#             if (i -k) in map_a:
+#                 if nums[i] == map_a[i-k]:
+#                     return True
+#             else:
+#                 map_a[i] = nums[i]
+#         return False
+
+class Solution:
+    def containsNearbyDuplicate(self, nums, k):
+        dic = dict()
+        for i, v in enumerate(nums):
+            if v in dic and i - dic[v] <= k:
+                return True
+            dic[v] = i  
+        return False
+# 后面就更不可能满足<= k，所以直接覆盖了                
+        
