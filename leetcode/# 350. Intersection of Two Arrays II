@@ -1,0 +1,12 @@
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        res = list(set(nums1) & set(nums2))
+        counter1 = collections.Counter(nums1)
+        counter2 = collections.Counter(nums2)
+        ans = []
+        for i in res:
+            ans = ans + [i] * min(counter1[i], counter2[i])
+        return ans
+            
+        
+        
