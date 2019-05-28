@@ -1,0 +1,19 @@
+class Solution:
+    def numberOfBoomerangs(self, points: List[List[int]]) -> int:
+        if len(points) < 3:
+            return 0
+        dic = {}
+        ans = 0
+        for i in range(len(points)):
+            for j in range(len(points)):
+                if j != i:
+                    dis = (points[i][0]-points[j][0])**2+(points[i][1]-points[j][1])**2
+                    if dis not in dic:
+                        dic[dis] = 1
+                    else:
+                        dic[dis] += 1
+            for key in dic:
+                ans+=dic[key]*(dic[key]-1)
+            dic.clear()
+        return ans
+        
