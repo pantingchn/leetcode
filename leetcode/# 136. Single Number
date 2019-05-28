@@ -1,0 +1,19 @@
+# class Solution(object):
+#     def singleNumber(self, nums):
+#         """
+#         :type nums: List[int]
+#         :rtype: int
+#         """
+#         hash_table = {}
+#         for i in nums:
+#             try:
+#                 hash_table.pop(i)  # 如果键存在，就删除，不存在就会报错
+#             except:
+#                 hash_table[i] = 1  # 如果键不存在，就存键
+#         return hash_table.popitem()[0]
+
+
+
+class Solution(object):
+    def singleNumber(self, nums):
+        return 2 * sum(set(nums)) - sum(nums)
