@@ -1,0 +1,12 @@
+class Solution(object):
+    def minCostClimbingStairs(self, cost):
+        if len(cost) == 2:
+            return min(cost[0], cost[1])
+        dp, dp1, dp2 = 0, 0, 0
+        for i in range(2, len(cost)+1):
+            dp = min(dp1 + cost[i-1], dp2 + cost[i-2])
+            dp2, dp1 = dp1, dp
+        return dp
+
+    
+# 当前位置的最小花费=min(距当前位置一阶梯的最小体力花费+走一阶梯的体力花费，距当前位置两阶梯的最小体力花费+走两阶梯的体力花费)
