@@ -1,0 +1,11 @@
+class Solution:
+    def findUnsortedSubarray(self, nums):
+        nums_sort = sorted(nums)
+        if nums_sort == nums:
+            return 0
+        for i in range(len(nums)):
+            if nums_sort[i] != nums[i]: break
+        for j in range(len(nums)-1, -1, -1):
+            if nums_sort[j] != nums[j]: break
+        return j-i+1
+        
