@@ -1,0 +1,15 @@
+# 超时了 有人说list不是基于hash tabel， 而dict和set是的
+# class Solution:
+#     def containsDuplicate(self, nums):
+#         map_a = dict()
+#         for i in range(len(nums)):
+#             if nums[i] in map_a:
+#                 return True
+#             else:
+#                 map_a[nums[i]] = nums[i]
+#         return False
+        
+
+class Solution:
+    def containsDuplicate(self, nums):
+        return not (len(nums) == len(set(nums)))
