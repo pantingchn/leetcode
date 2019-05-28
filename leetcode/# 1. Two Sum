@@ -1,0 +1,26 @@
+class Solution(object):
+	def twoSum(self, nums, target):
+		for i in range(len(nums)):
+			rest = nums[i+1:]
+			T = target - nums[i]
+			if T in rest:
+				ind = rest.index(T)
+				return [i, ind + i+1]
+			elif i == len(nums)-1:
+				return []
+
+
+
+
+# reference answer
+# 遍历nums中的每一个元素，把target-nums[i]：i存在字典里；在遍历每一个元素之前，先看一看在不在字典里
+class Solution(object):
+    def twoSum(self, nums, target):
+        if len(nums) <= 1:
+            return False
+        buff_dict = {}
+        for i in range(len(nums)):
+            if nums[i] in buff_dict:
+                return [buff_dict[nums[i]], i]
+            else:
+                buff_dict[target - nums[i]] = i
