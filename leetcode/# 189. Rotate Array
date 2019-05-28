@@ -1,0 +1,17 @@
+# 太慢了
+# class Solution:
+#     def rotate(self, nums, k):
+#         for i in range(k):
+#             a = nums[-1]
+#             nums[1:] = nums[0:len(nums)-1]
+#             nums[0]=a
+
+
+class Solution:
+    def rotate(self, nums, k):
+        k = k % len(nums)
+        a = nums[len(nums)-k:]
+        nums[k:] = nums[0:len(nums)-k]
+        nums[0:k] = a
+        
+        
