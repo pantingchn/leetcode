@@ -1,0 +1,13 @@
+# math 
+# class Solution:
+#     def missingNumber(self, nums):
+#         n = len(nums)
+#         return (n*(n+1)//2) - sum(nums)
+
+# 异或运算,可以去了解下异或运算的规则
+class Solution:
+    def missingNumber(self, nums):
+        missing = len(nums)
+        for i, num in enumerate(nums):
+            missing ^= i ^ num
+        return missing
