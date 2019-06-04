@@ -23,3 +23,35 @@ class Solution:
             employee = emap[eid]
             return (employee.importance + sum(dfs(eid) for eid in employee.subordinates))
         return dfs(id)
+        
+        
+        
+        
+        
+# 基于广度优先搜索
+# deque模块是python标准库collections中的一项，它提供了两端都可以操作的序列，这意味着，在序列的前后你都可以执行添加或删除操作。
+from collections import deque
+
+class Solution:
+    def getImportance(self, employees, id):
+        """
+        :type employees: Employee
+        :type id: int
+        :rtype: int
+        """
+        d = {}
+        
+        for e in employees:
+            d[e.id] = (e.importance, e.subordinates)
+            
+        q = deque([d[id][1]])
+        res = d[id][0]
+        
+        while q:
+            sub = q.popleft()
+            for s in sub:
+                if s in d:
+                    res += d[s][0]
+                    q.append(d[s][1])
+        
+        return res
