@@ -1,0 +1,20 @@
+import math
+
+class Solution:
+    def match(self, A: str, B: str):
+        for i in range(len(A)-len(B)+1):
+            if A[i:i+len(B)] == B:
+                return True
+        return False
+
+    def repeatedStringMatch(self, A: str, B: str) -> int:
+        lenA = len(A)
+        lenB = len(B)
+        min_time = math.ceil(lenB / lenA)
+        lenA_min_time = A * min_time
+        flag = self.match(lenA_min_time, B)
+        if flag:
+            return min_time
+        else:
+            lenA_min_time = A * (min_time + 1)
+            return (min_time + 1) if self.match(lenA_min_time, B) else -1
