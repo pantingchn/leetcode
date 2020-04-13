@@ -1,0 +1,21 @@
+class Solution:
+    def dfs(self, image, sr, sc):
+        if sr<0 or sr>=self.Row or sc<0 or sc >=self.Col:
+            return
+        if image[sr][sc] != self.targetColor:
+            return
+        image[sr][sc] = self.newColor
+        self.dfs(image, sr-1, sc)
+        self.dfs(image, sr+1, sc)
+        self.dfs(image, sr, sc-1)
+        self.dfs(image, sr, sc+1)
+
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
+        self.targetColor = image[sr][sc]
+        if self.targetColor == newColor:
+            return image
+        self.newColor = newColor
+        self.Row = len(image)
+        self.Col = len(image[0])
+        self.dfs(image, sr, sc)
+        return image
