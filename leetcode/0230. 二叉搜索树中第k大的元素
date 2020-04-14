@@ -1,0 +1,29 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def inorderTraversal(self, root, k):   #先把根节点入栈，如果左子树一直不为空，就一直入栈，直到 
+                                  ##把所有左节点入栈，然后pop栈顶元素，指针指向栈顶元素的右子树
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        stack=[]
+        res=[]
+        while root or stack:
+            while root:
+                stack.append(root)
+                root=root.left
+            if stack:
+                a=stack.pop()
+                root=a.right
+                res.append(a.val)
+            if len(res) == k:
+                return res[-1]
+
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        return self.inorderTraversal(root, k)
