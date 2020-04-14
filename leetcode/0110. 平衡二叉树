@@ -1,0 +1,22 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def dfs(self, root):
+        if not self.flag:
+            return 0
+        if root == None:
+            return 0
+        num_l = self.dfs(root.left)
+        num_r = self.dfs(root.right)
+        if abs(num_l-num_r)>1:
+            self.flag = False
+        return max(num_r,num_l)+1
+    def isBalanced(self, root: TreeNode) -> bool:
+        self.flag = True
+        self.dfs(root)
+        return self.flag
