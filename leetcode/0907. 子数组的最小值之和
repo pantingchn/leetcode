@@ -1,0 +1,16 @@
+class Solution(object):
+    def sumSubarrayMins(self, A):
+        MOD = 10**9 + 7
+        stack = []
+        res = 0
+        dot = 0
+        for i, y in enumerate(A):
+            count = 1
+            while stack and stack[-1][0] > y:
+                x, c = stack.pop()
+                count += c
+                dot -= c*x
+            stack.append((y, count))
+            dot += y*count
+            res += dot
+        return res % MOD
